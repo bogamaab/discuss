@@ -1,4 +1,9 @@
 defmodule Discuss.TopicController do
-  def new() do
+  use Discuss.Web, :controller
+
+  alias Discuss.Topic
+
+  def new(conn, params) do
+    changeset = Topic.changeset(%Topic{}, %{})
   end
 end
