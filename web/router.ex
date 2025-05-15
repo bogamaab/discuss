@@ -19,6 +19,17 @@ defmodule Discuss.Router do
     resources "/", TopicController
   end
 
+  scope "/auth", Discuss do
+    pipe_through :browser
+
+    # :provider es la manera general: puede ser remplazado por github, facebook, google
+    # o cualquier otra estrategia usada de esta manera:
+    # get "/github", AuthController, :request
+    get "/:provider", AuthController, :request
+
+    get "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Discuss do
   #   pipe_through :api
